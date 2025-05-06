@@ -11,7 +11,7 @@ def visualize_anomalies(file_path):
     # Load the preprocessed data
     df = pd.read_csv(file_path)
     df['datatime'] = pd.to_datetime(df['datatime'])
-    df_last_70 = df.tail(int(len(df) * 0.7))  # Select the last 70% of the data
+    df_last_70 = df.tail(int(len(df) * 1.0))  # Select the last 70% of the data
 
     # Check if the necessary column exists
     if 'anomaly_class' not in df_last_70.columns:
@@ -75,7 +75,7 @@ def visualize_anomalies(file_path):
 
     # Plot bar chart of anomaly percentages
     plt.figure(figsize=(8, 6))
-    sns.barplot(x=list(anomaly_percentages.keys()), y=list(anomaly_percentages.values()), palette='viridis')
+    sns.barplot(x=list(anomaly_percentages.keys()), y=list(anomaly_percentages.values()), hue=list(anomaly_percentages.keys()), palette='viridis', legend=False)
     plt.title('Anomaly Detection Method Comparison (in %)', fontsize=16, fontweight='bold')
     plt.ylabel('Percentage of Anomalies', fontsize=14)
     plt.tight_layout()

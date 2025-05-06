@@ -9,7 +9,10 @@ def preprocess_data(df):
 
     df['datatime'] = pd.to_datetime(df['datatime'])
     df.set_index('datatime', inplace=True)
-    df_resampled = df.resample('T').mean()
+    # df_resampled = df.resample('min').mean()
+    df_resampled = df
+
+
     df_resampled.dropna(inplace=True)
     df_resampled.reset_index(inplace=True)
 
